@@ -1,0 +1,6 @@
+history.py
+
+venv/
+
+*.pyc
+__pycache__/

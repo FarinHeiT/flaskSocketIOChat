@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Session</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<script src='{{ url_for("static", filename="script.js")}}'></script>
+	
+	<style>
+		.list-group{
+		    margin-bottom: 10px;
+		    overflow-y: scroll;
+		    -webkit-overflow-scrolling: touch;
+		    height: 300px;
+		    max-height: 300px;
+		}
+	</style>
+
+</head>
+<body>
+	
+
+	<div class="container">
+				<div class="col-12"></div>
+					{% if not chat_history %}
+						<h3 style="color: #ccc;font-size: 30px;">No message yet...</h3>
+					{% endif %}
+
+					<div class="message_holder">
+						<ul class="list-group" id='chat'>
+							{% for message in chat_history %}
+						  		<li class="list-group-item"><b>{{ message[0] }}</b> {{ message[1] }}</li>
+							{% endfor %}
+						</ul>
+					</div>
+
+		<div class="row">
+			<div class=" offset-3 col-6">
+				<form action="" method="POST">
+					<input type="text" class="username form-control" placeholder="Username" required>
+					<input type="text" class="message form-control" placeholder="Messages" required>
+					<input type="submit" class="form-control btn btn-primary">
+				</form>
+				<button class="btn btn-danger" id='clear_chat'>clear chat</button>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
